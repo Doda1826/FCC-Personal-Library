@@ -172,7 +172,7 @@ suite('Functional Tests', function() {
           .delete('/api/books/' + bookID)
           .end(function(err, res) {
             assert.equal(res.status, 200)
-            assert.equal(res.text, 'delete successfully')
+            assert.equal(res.text, 'delete successful')
             done()
           })
           .timeout(timeout)

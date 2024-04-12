@@ -27,7 +27,7 @@ module.exports = function (app) {
             _id: book._id,
             title: book.title,
             comments: book.comments,
-            commentCount: book.comments.length,
+            commentcount: book.comments.length,
           }
         })
         res.json(formatData)
@@ -58,7 +58,7 @@ module.exports = function (app) {
       try {
         const deleted = await Book.deleteMany()
         console.log('deleted: >> ', deleted)
-        res.send('delete successful')
+        res.send('complete delete successful')
       } catch (err) {
         res.send('error')
       }
@@ -76,7 +76,7 @@ module.exports = function (app) {
           comments: book.comments,
           _id: book._id,
           title: book.title,
-          commentCount: book.comments.length,
+          commentcount: book.comments.length,
         })
       } catch (err) {
         res.send('no book exists')
@@ -93,13 +93,13 @@ module.exports = function (app) {
       } 
       try {
         let book = await Book.findById(bookid)
-        book.comments.push(document)
+        book.comments.push(comment)
         book = await book.save()
         res.json({
           comments: book.comments,
           _id: book._id,
           title: book.title,
-          commentCount: book.comments.length,
+          commentcount: book.comments.length,
         })
       } catch (err) {
         res.send('no book exists')
@@ -113,7 +113,7 @@ module.exports = function (app) {
         const deleted = await Book.findByIdAndDelete(bookid)
         console.log('deleted: >>', deleted)
         if(!deleted) throw new Error('no book exists')
-        res.send('delete successfully')
+        res.send('delete successful')
       } catch (err) {
         res.send('no book exists')
       }
